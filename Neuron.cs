@@ -89,5 +89,7 @@ namespace Neuro
         /// <returns>the value of a logistic sigmoid function.</returns>
         public static double Activation(double value) => Math.Tanh(value);
 
+        public static double ActivationDerivative(double value) => 1 - Math.Pow(value, 2);
+
     }
 }
