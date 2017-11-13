@@ -97,5 +97,17 @@ namespace Neuro
             this.gradient = delta * Neuron.ActivationDerivative(this.Output);
         }
 
+        public void FeedForward()
+        {
+            double value = 0;
+
+            Array.ForEach(this.previousLayers, neuron =>
+            {
+                value += neuron.Output * neuron.Connections[this.index].Weight;
+            });
+
+            this.Output = Neuron.Activation(value);
+        }
+
     }
 }
