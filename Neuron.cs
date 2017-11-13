@@ -71,5 +71,23 @@ namespace Neuro
                 this.Connections = new NetConnection[0];
             }
         }
+
+        /// <summary>
+        /// In neural networks, the activation functions
+        /// transforms its current values to a more
+        /// meaningful value based on the activation
+        /// function that you use. The four most well-known 
+        /// activation functions are:
+        /// <list type="bullet">
+        /// <item><description>Logistic sigmoid: a decimal value between 0 and 1;</description></item>
+        /// <item><description>Hyperbolic tangent: a decimal value between -1 and +1;</description></item>
+        /// <item><description>Heaviside step: a boolean value between of either 0 or 1;</description></item>
+        /// <item><description>Softmax: a decimal value between 0 and 1 where the sum of all weights equals to 1.</description></item>
+        /// </list>
+        /// </summary>
+        /// <param name="value"></param>
+        /// <returns>the value of a logistic sigmoid function.</returns>
+        public static double Activation(double value) => Math.Tanh(value);
+
     }
 }
