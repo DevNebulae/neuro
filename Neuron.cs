@@ -9,7 +9,7 @@ namespace Neuro
         /// where a neuron is connected with its 
         /// predecessors and its successors.
         /// </summary>
-        private NetConnection[] connections;
+        public NetConnection[] Connections { get; }
         /// <summary>
         /// The predecessors of this neuron which are
         /// connected to this neuron. When the neuron is in
@@ -53,20 +53,20 @@ namespace Neuro
             // neuron is not in the last layer.
             if (nextLayers != null)
             {
-                this.connections = new NetConnection[nextLayers.Length];
+                this.Connections = new NetConnection[nextLayers.Length];
 
                 // When this node is not the last node, add
                 // all nodes as a connection with a
                 // randomized weight.
                 for (int i = 0; i < nextLayers.Length; i++)
                 {
-                    this.connections[i].Weight = random.NextDouble();
-                    this.connections[i].DeltaWeight = 0;
+                    this.Connections[i].Weight = random.NextDouble();
+                    this.Connections[i].DeltaWeight = 0;
                 }
             }
             else
             {
-                this.connections = new NetConnection[0];
+                this.Connections = new NetConnection[0];
             }
         }
     }
