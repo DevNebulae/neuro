@@ -13,16 +13,20 @@ namespace Neuro
         /// <summary>
         /// The predecessors of this neuron which are
         /// connected to this neuron. When the neuron is in
-        /// the first layer, the array is null.
+        /// the first layer, the array should be null.
         /// </summary>
         private Neuron[] previousLayers;
         /// <summary>
         /// The successors of this neuron which this neuron
         /// is connected to. When the neuron is in the last
-        /// layer, the array is null.
+        /// layer, the array should be null.
         /// </summary>
         private Neuron[] nextLayers;
         private double gradient;
+        /// <summary>
+        /// Represents the index of the neuron in the neural
+        /// net counted from 0.
+        /// </summary>
         private int index;
 
         /// <summary>
