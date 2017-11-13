@@ -91,5 +91,11 @@ namespace Neuro
 
         public static double ActivationDerivative(double value) => 1 - Math.Pow(value, 2);
 
+        public void CalculateOutputGradient(double target)
+        {
+            double delta = target - this.Output;
+            this.gradient = delta * Neuron.ActivationDerivative(this.Output);
+        }
+
     }
 }
