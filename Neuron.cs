@@ -43,6 +43,8 @@ namespace Neuro
         /// </summary>
         private static double ALPHA = 0.5;
 
+        public double Output { get; set; }
+
         public Neuron(Neuron[] previousLayers, Neuron[] nextLayers, int index, Random random)
         {
             this.previousLayers = previousLayers;
