@@ -109,5 +109,14 @@ namespace Neuro
             this.Output = Neuron.Activation(value);
         }
 
+        public void UpdateInputWeights() =>
+            Array.ForEach(this.previousLayers, neuron =>
+            {
+                double oldDeltaWeight = neuron.Connections[this.index].DeltaWeight;
+                double newDeltaWeight = Neuron.ETA * neuron.Output * this.gradient + Neuron.ALPHA * oldDeltaWeight;
+
+                neuron.Connections[this.index].DeltaWeight = newDeltaWeight;
+                neuron.Connections[this.index].Weight += newDeltaWeight;
+            });
     }
 }
