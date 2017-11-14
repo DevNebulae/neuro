@@ -1,8 +1,10 @@
-﻿
+
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.26124.0
 MinimumVisualStudioVersion = 15.0.26124.0
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "neuro", "Neuro\neuro.csproj", "{507221C2-6B1E-41B9-B14C-F5D17CBA6CAB}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -14,5 +16,19 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{507221C2-6B1E-41B9-B14C-F5D17CBA6CAB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{507221C2-6B1E-41B9-B14C-F5D17CBA6CAB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{507221C2-6B1E-41B9-B14C-F5D17CBA6CAB}.Debug|x64.ActiveCfg = Debug|x64
+		{507221C2-6B1E-41B9-B14C-F5D17CBA6CAB}.Debug|x64.Build.0 = Debug|x64
+		{507221C2-6B1E-41B9-B14C-F5D17CBA6CAB}.Debug|x86.ActiveCfg = Debug|x86
+		{507221C2-6B1E-41B9-B14C-F5D17CBA6CAB}.Debug|x86.Build.0 = Debug|x86
+		{507221C2-6B1E-41B9-B14C-F5D17CBA6CAB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{507221C2-6B1E-41B9-B14C-F5D17CBA6CAB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{507221C2-6B1E-41B9-B14C-F5D17CBA6CAB}.Release|x64.ActiveCfg = Release|x64
+		{507221C2-6B1E-41B9-B14C-F5D17CBA6CAB}.Release|x64.Build.0 = Release|x64
+		{507221C2-6B1E-41B9-B14C-F5D17CBA6CAB}.Release|x86.ActiveCfg = Release|x86
+		{507221C2-6B1E-41B9-B14C-F5D17CBA6CAB}.Release|x86.Build.0 = Release|x86
 	EndGlobalSection
 EndGlobal
