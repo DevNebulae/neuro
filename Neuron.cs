@@ -15,19 +15,23 @@ namespace Neuro
         /// connected to this neuron. When the neuron is in
         /// the first layer, the array should be null.
         /// </summary>
-        private Neuron[] previousLayers;
+        private Neuron[] PreviousLayers { get; }
         /// <summary>
         /// The successors of this neuron which this neuron
         /// is connected to. When the neuron is in the last
         /// layer, the array should be null.
         /// </summary>
-        private Neuron[] nextLayers;
-        private double gradient;
+        private Neuron[] NextLayers { get; }
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
+        private double Gradient { get; set; }
         /// <summary>
         /// Represents the index of the neuron in the neural
         /// net counted from 0.
         /// </summary>
-        private int index;
+        private int Index { get; }
 
         /// <summary>
         /// The ETA is the rate at which the neural net 
@@ -47,9 +51,9 @@ namespace Neuro
 
         public Neuron(Neuron[] previousLayers, Neuron[] nextLayers, int index, Random random)
         {
-            this.previousLayers = previousLayers;
-            this.nextLayers = nextLayers;
-            this.index = index;
+            this.PreviousLayers = previousLayers;
+            this.NextLayers = nextLayers;
+            this.Index = index;
 
             // Connect layer (n) with layer (n+1) if this
             // neuron is not in the last layer.
@@ -86,7 +90,7 @@ namespace Neuro
         /// </list>
         /// </summary>
         /// <param name="value"></param>
-        /// <returns>the value of a logistic sigmoid function.</returns>
+        /// <returns>the value of a hyperbolic tangent function.</returns>
         public static double Activation(double value) => Math.Tanh(value);
 
         public static double ActivationDerivative(double value) => 1 - Math.Pow(value, 2);
@@ -100,16 +104,16 @@ namespace Neuro
         public void CalculateOutputGradient(double target)
         {
             double delta = target - this.Output;
-            this.gradient = delta * Neuron.ActivationDerivative(this.Output);
+            this.Gradient = delta * Neuron.ActivationDerivative(this.Output);
         }
 
         public void FeedForward()
         {
             double value = 0;
 
-            Array.ForEach(this.previousLayers, neuron =>
+            Array.ForEach(this.PreviousLayers, neuron =>
             {
-                value += neuron.Output * neuron.Connections[this.index].Weight;
+                value += neuron.Output * neuron.Connections[this.Index].Weight;
             });
 
             this.Output = Neuron.Activation(value);
@@ -133,13 +137,13 @@ namespace Neuro
         }
 
         public void UpdateInputWeights() =>
-            Array.ForEach(this.previousLayers, neuron =>
+            Array.ForEach(this.PreviousLayers, neuron =>
             {
-                double oldDeltaWeight = neuron.Connections[this.index].DeltaWeight;
-                double newDeltaWeight = Neuron.ETA * neuron.Output * this.gradient + Neuron.ALPHA * oldDeltaWeight;
+                double oldDeltaWeight = neuron.Connections[this.Index].DeltaWeight;
+                double newDeltaWeight = Neuron.ETA * neuron.Output * this.Gradient + Neuron.ALPHA * oldDeltaWeight;
 
-                neuron.Connections[this.index].DeltaWeight = newDeltaWeight;
-                neuron.Connections[this.index].Weight += newDeltaWeight;
+                neuron.Connections[this.Index].DeltaWeight = newDeltaWeight;
+                neuron.Connections[this.Index].Weight += newDeltaWeight;
             });
     }
 }
