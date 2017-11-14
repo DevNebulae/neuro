@@ -109,6 +109,23 @@ namespace Neuro
             this.Output = Neuron.Activation(value);
         }
 
+        public double SumDOW()
+        {
+            double dow = 0;
+
+            // The last neuron is skipped in the next layer,
+            // because it is a bias neuron.
+            // TODO: Figure out how to specify that the last
+            // neuron is a biased neuron or that document
+            // that it is by default.
+            for (int i = 0; i < this.NextLayers.Length - 1; i++)
+            {
+                dow += this.Connections[i].Weight * this.NextLayers[i].Gradient;
+            }
+
+            return dow;
+        }
+
         public void UpdateInputWeights() =>
             Array.ForEach(this.previousLayers, neuron =>
             {
