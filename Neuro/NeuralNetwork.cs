@@ -122,6 +122,21 @@ namespace Neuro
                 }
             }
         }
+
+        public double[] Results()
+        {
+            Neuron[] outputLayer = this.Layers[this.Layers.Length - 1];
+            // Skip the bias neuron
+            double[] results = new double[this.Layers.Length - 1];
+
+            for (int index = 0; index < results.Length; index++)
+            {
+                results[index] = outputLayer[index].Output;
+            }
+
+            return results;
+        }
+
         public double RMSNetError(double[] targetValues)
         {
             double error = 0.0;
