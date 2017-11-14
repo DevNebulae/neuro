@@ -91,6 +91,12 @@ namespace Neuro
 
         public static double ActivationDerivative(double value) => 1 - Math.Pow(value, 2);
 
+        public void CalculateHiddenGradient()
+        {
+            double dow = SumDOW();
+            this.Gradient = dow * Neuron.ActivationDerivative(this.Output);
+        }
+
         public void CalculateOutputGradient(double target)
         {
             double delta = target - this.Output;
