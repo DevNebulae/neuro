@@ -83,16 +83,34 @@ namespace Neuro
         /// function that you use. The four most well-known 
         /// activation functions are:
         /// <list type="bullet">
-        /// <item><description>Logistic sigmoid: a decimal value between 0 and 1;</description></item>
-        /// <item><description>Hyperbolic tangent: a decimal value between -1 and +1;</description></item>
-        /// <item><description>Heaviside step: a boolean value between of either 0 or 1;</description></item>
-        /// <item><description>Softmax: a decimal value between 0 and 1 where the sum of all weights equals to 1.</description></item>
+        /// <item>
+        ///     <term>Logistic sigmoid</term>
+        ///     <description>A decimal value between 0 and 1;</description>
+        /// </item>
+        /// <item>
+        ///     <term>Hyperbolic tangent</term>
+        ///     <description>A decimal value between -1 and +1;</description>
+        /// </item>
+        /// <item>
+        ///     <term>Heaviside step</term>
+        ///     <description>A boolean value between of either 0 or 1;</description>
+        /// </item>
+        /// <item>
+        ///     <term>Softmax</term>
+        ///     <description>A decimal value between 0 and 1 where the sum of all weights equals to 1.</description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="value"></param>
         /// <returns>the value of a hyperbolic tangent function.</returns>
         public static double Activation(double value) => Math.Tanh(value);
 
+        /// <summary>
+        /// Derives the activation function, which in this case is equal to
+        /// 1 - tanh(x)^2.
+        /// </summary>
+        /// <param name="value"></param>
+        /// <returns>the derived value of the activation function.</returns>
         public static double ActivationDerivative(double value) => 1 - Math.Pow(value, 2);
 
         public void CalculateHiddenGradient()
