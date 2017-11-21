@@ -125,6 +125,11 @@ namespace Neuro
             this.Gradient = delta * Neuron.ActivationDerivative(this.Output);
         }
 
+        /// <summary>
+        /// Calculate the current output property based on
+        /// the output values multiplied by the weight of
+        /// the connection of the predecessing neuron(s).
+        /// </summary>
         public void FeedForward()
         {
             double value = 0;
