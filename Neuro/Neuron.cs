@@ -23,9 +23,15 @@ namespace Neuro
         /// </summary>
         private Neuron[] NextLayers { get; }
         /// <summary>
-        /// 
+        /// The hidden gradient is the weight of the neuron
+        /// that other nodes can not influence and is
+        /// calculated based on the weights of the previous
+        /// neurons and their outputs.
         /// </summary>
-        /// <returns></returns>
+        /// <returns>
+        /// a floating point number between the limits of
+        /// the specified activation function.
+        /// </returns>
         private double Gradient { get; set; }
         /// <summary>
         /// Represents the index of the neuron in the neural
@@ -85,32 +91,45 @@ namespace Neuro
         /// <list type="bullet">
         /// <item>
         ///     <term>Logistic sigmoid</term>
-        ///     <description>A decimal value between 0 and 1;</description>
+        ///     <description>
+        ///     A decimal value between 0 and 1;
+        ///     </description>
         /// </item>
         /// <item>
         ///     <term>Hyperbolic tangent</term>
-        ///     <description>A decimal value between -1 and +1;</description>
+        ///     <description>
+        ///     A decimal value between -1 and +1;
+        ///     </description>
         /// </item>
         /// <item>
         ///     <term>Heaviside step</term>
-        ///     <description>A boolean value between of either 0 or 1;</description>
+        ///     <description>
+        ///     A boolean value between of either 0 or 1;
+        ///     </description>
         /// </item>
         /// <item>
         ///     <term>Softmax</term>
-        ///     <description>A decimal value between 0 and 1 where the sum of all weights equals to 1.</description>
+        ///     <description>
+        ///     A decimal value between 0 and 1 where the
+        ///     sum of all weights equals to 1.
+        ///     </description>
         /// </item>
         /// </list>
         /// </summary>
         /// <param name="value"></param>
-        /// <returns>the value of a hyperbolic tangent function.</returns>
+        /// <returns>
+        /// the value of a hyperbolic tangent function.
+        /// </returns>
         public static double Activation(double value) => Math.Tanh(value);
 
         /// <summary>
-        /// Derives the activation function, which in this case is equal to
-        /// 1 - tanh(x)^2.
+        /// Derives the activation function, which in this
+        /// case is equal to 1 - tanh(x)^2.
         /// </summary>
         /// <param name="value"></param>
-        /// <returns>the derived value of the activation function.</returns>
+        /// <returns>
+        /// the derived value of the activation function.
+        /// </returns>
         public static double ActivationDerivative(double value) => 1 - Math.Pow(value, 2);
 
         public void CalculateHiddenGradient()
