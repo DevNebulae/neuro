@@ -15,13 +15,13 @@ namespace Neuro
         /// connected to this neuron. When the neuron is in
         /// the first layer, the array should be null.
         /// </summary>
-        private Neuron[] PreviousLayers { get; }
+        private Neuron[] PreviousLayer { get; }
         /// <summary>
         /// The successors of this neuron which this neuron
         /// is connected to. When the neuron is in the last
         /// layer, the array should be null.
         /// </summary>
-        private Neuron[] NextLayers { get; }
+        private Neuron[] NextLayer { get; }
         /// <summary>
         /// The hidden gradient is the weight of the neuron
         /// that other nodes can not influence and is
@@ -55,22 +55,22 @@ namespace Neuro
 
         public double Output { get; set; }
 
-        public Neuron(Neuron[] previousLayers, Neuron[] nextLayers, int index, Random random)
+        public Neuron(Neuron[] previousLayer, Neuron[] nextLayer, int index, Random random)
         {
-            this.PreviousLayers = previousLayers;
-            this.NextLayers = nextLayers;
+            this.PreviousLayer = previousLayer;
+            this.NextLayer = nextLayer;
             this.Index = index;
 
             // Connect layer (n) with layer (n+1) if this
             // neuron is not in the last layer.
-            if (nextLayers != null)
+            if (nextLayer != null)
             {
-                this.Connections = new NetConnection[nextLayers.Length];
+                this.Connections = new NetConnection[nextLayer.Length];
 
                 // When this node is not the last node, add
                 // all nodes as a connection with a
                 // randomized weight.
-                for (int i = 0; i < nextLayers.Length; i++)
+                for (int i = 0; i < nextLayer.Length; i++)
                 {
                     this.Connections[i].Weight = random.NextDouble();
                     this.Connections[i].DeltaWeight = 0;
@@ -132,9 +132,15 @@ namespace Neuro
         /// </returns>
         public static double ActivationDerivative(double value) => 1 - Math.Pow(value, 2);
 
+        /// <summary>
+        /// Calculate the hidden gradient based on the sum
+        /// of the weight to the nodes in the next layer 
+        /// multiplied by the hidden gradient of those
+        /// nodes.
+        /// </summary>
         public void CalculateHiddenGradient()
         {
-            double dow = SumDOW();
+            double dow = this.SumDOW();
             this.Gradient = dow * Neuron.ActivationDerivative(this.Output);
         }
 
@@ -153,7 +159,7 @@ namespace Neuro
         {
             double value = 0;
 
-            Array.ForEach(this.PreviousLayers, neuron =>
+            Array.ForEach(this.PreviousLayer, neuron =>
             {
                 value += neuron.Output * neuron.Connections[this.Index].Weight;
             });
@@ -161,6 +167,14 @@ namespace Neuro
             this.Output = Neuron.Activation(value);
         }
 
+        /// <summary>
+        /// Calculate the sum of the connections' weight to
+        /// the neurons in the next layer multiplied by the
+        /// hidden gradient of those nodes.
+        /// </summary>
+        /// <returns>
+        /// a floating point number representing the sum of.
+        /// </returns>
         public double SumDOW()
         {
             double dow = 0;
@@ -170,16 +184,16 @@ namespace Neuro
             // TODO: Figure out how to specify that the last
             // neuron is a biased neuron or that document
             // that it is by default.
-            for (int i = 0; i < this.NextLayers.Length - 1; i++)
+            for (int i = 0; i < this.NextLayer.Length - 1; i++)
             {
-                dow += this.Connections[i].Weight * this.NextLayers[i].Gradient;
+                dow += this.Connections[i].Weight * this.NextLayer[i].Gradient;
             }
 
             return dow;
         }
 
         public void UpdateInputWeights() =>
-            Array.ForEach(this.PreviousLayers, neuron =>
+            Array.ForEach(this.PreviousLayer, neuron =>
             {
                 double oldDeltaWeight = neuron.Connections[this.Index].DeltaWeight;
                 double newDeltaWeight = Neuron.ETA * neuron.Output * this.Gradient + Neuron.ALPHA * oldDeltaWeight;
