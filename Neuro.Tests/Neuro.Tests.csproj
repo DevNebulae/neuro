@@ -13,7 +13,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Neuro\Neuro.csproj" />
+    <ProjectReference Include="../Neuro/Neuro.csproj" />
   </ItemGroup>
 
 </Project>
