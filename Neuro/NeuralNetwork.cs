@@ -123,6 +123,11 @@ namespace Neuro
             }
         }
 
+        public Neuron[] GetLayer(int layer)
+        {
+            return this.Layers[layer];
+        }
+
         public double[] Results()
         {
             Neuron[] outputLayer = this.Layers[this.Layers.Length - 1];
