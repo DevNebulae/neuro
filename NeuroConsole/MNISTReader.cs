@@ -48,6 +48,20 @@ namespace NeuroConsole {
             return labels;
         }
 
+        /// <summary>
+        /// Read an MNIST data file at the specified
+        /// location.
+        /// </summary>
+        /// <param name="size">
+        /// The size of the MNIST data set.
+        /// </param>
+        /// <param name="imageSize">
+        /// The size of the images in the dataset. Since the
+        /// images can only be square, you can only specify
+        /// one number.
+        /// </param>
+        /// <param name="imageLocation"></param>
+        /// <returns></returns>
         public static byte[][][] ReadMNISTImages(int size, int imageSize, string imageLocation)
         {
             // Initialize the array of images with an array
