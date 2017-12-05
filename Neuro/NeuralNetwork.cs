@@ -130,7 +130,7 @@ namespace Neuro
 
         public double[] Results()
         {
-            Neuron[] outputLayer = this.Layers[this.Layers.Length - 1];
+            Neuron[] outputLayer = this.Layers[this.Layers.Length];
             // Skip the bias neuron
             double[] results = new double[outputLayer.Length - 1];
 
