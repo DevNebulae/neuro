@@ -15,7 +15,7 @@ namespace NeuroConsole
 
         static void Main(string[] args)
         {
-            var trainSize = 5000;
+            var trainSize = 60000;
             var testSize = 10000;
 
             var network = new NeuralNetwork(new int[] { 784, 300, 10 });
@@ -59,15 +59,13 @@ namespace NeuroConsole
                 network.FeedForward(inputs);
                 var outputs = network.Results();
 
-                Console.WriteLine($"{outputs[target]}, {outputs.Max()}");
-
                 if (outputs[target] == outputs.Max())
                     correct++;
                 else
                     incorrect++;
             }
 
-            Console.WriteLine($"Testing score of {(double)correct / (double)testSize}%. I recognized {correct} of {testSize} images correctly, while I failed to recognize {incorrect} of {testSize} images.");
+            Console.WriteLine($"Testing score of {(double)correct / (double)testSize * 100.0}%. I recognized {correct} of {testSize} images correctly, while I failed to recognize {incorrect} of {testSize} images.");
         }
     }
 }
